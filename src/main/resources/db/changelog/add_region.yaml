@@ -1,0 +1,131 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-regions-table
+      comment: "Create table"
+      author: admin
+      changes:
+        - createTable:
+            tableName: regions
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: alias
+                  type: varchar(32)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: add_data1
+      comment: "Add data to table"
+      author: admin
+      changes:
+        - insert:
+            tableName: regions
+            columns:
+              - column:
+                  name: name
+                  value: "Республика Адыгея"
+              - column:
+                  name: alias
+                  value: "RU-AD"
+        - insert:
+            tableName: regions
+            columns:
+              - column:
+                  name: name
+                  value: "Республика Алтай"
+              - column:
+                  name: alias
+                  value: "RU-AL"
+        - insert:
+            tableName: regions
+            columns:
+              - column:
+                  name: name
+                  value: "Республика Башкортостан"
+              - column:
+                  name: alias
+                  value: "RU-BA"
+        - insert:
+            tableName: regions
+            columns:
+              - column:
+                  name: name
+                  value: "Республика Бурятия"
+              - column:
+                  name: alias
+                  value: "RU-BU"
+        - insert:
+            tableName: regions
+            columns:
+              - column:
+                  name: name
+                  value: "Республика Дагестан"
+              - column:
+                  name: alias
+                  value: "RU-DA"
+        - insert:
+            tableName: regions
+            columns:
+              - column:
+                  name: name
+                  value: "Республика Ингушетия"
+              - column:
+                  name: alias
+                  value: "RU-IN"
+        - insert:
+            tableName: regions
+            columns:
+              - column:
+                  name: name
+                  value: "Кабардино-Балкарская Республика"
+              - column:
+                  name: alias
+                  value: "RU-KB"
+        - insert:
+            tableName: regions
+            columns:
+              - column:
+                  name: name
+                  value: "Республика Калмыкия"
+              - column:
+                  name: alias
+                  value: "RU-KL"
+        - insert:
+            tableName: regions
+            columns:
+              - column:
+                  name: name
+                  value: "Карачаево-Черкесская Республика"
+              - column:
+                  name: alias
+                  value: "RU-KC"
+        - insert:
+            tableName: regions
+            columns:
+              - column:
+                  name: name
+                  value: "Республика Карелия"
+              - column:
+                  name: alias
+                  value: "RU-KR"
+        - insert:
+            tableName: regions
+            columns:
+              - column:
+                  name: name
+                  value: "Республика Коми"
+              - column:
+                  name: alias
+                  value: "RU-KO"
