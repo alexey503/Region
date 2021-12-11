@@ -25,4 +25,7 @@ public interface RegionMapper {
 
     @Select("update regions set name = #{alias} where id = #{id}")
     void update(long id, String alias);
+
+    @Select("delete from regions where id = #{id}")
+    void delete(long id);
 }

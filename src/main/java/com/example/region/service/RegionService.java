@@ -3,6 +3,9 @@ package com.example.region.service;
 import com.example.region.data.entity.Region;
 import com.example.region.mapper.RegionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +18,7 @@ public class RegionService {
     @Autowired
     RegionMapper regionMapper;
 
+    @Cacheable("region")
     public ResponseEntity<Region> getRegionById(long id) {
 
         return regionMapper.getRegionById(id)
@@ -23,6 +27,7 @@ public class RegionService {
 
     }
 
+    @Cacheable(value = "region", key = "#alias")
     public ResponseEntity<Region> getRegionByAlias(String alias) {
 
         return regionMapper.getRegionByAlias(alias)
@@ -57,6 +62,7 @@ public class RegionService {
         return ResponseEntity.ok().build();
     }
 
+    @CachePut(value = "region", key = "#name")
     public ResponseEntity<?> updateRegion(String name, String alias) {
 
         Optional<Region> optionalRegion = regionMapper.getRegionByAlias(alias);
@@ -66,6 +72,19 @@ public class RegionService {
         }
 
         regionMapper.update(optionalRegion.get().getId(), name);
+
+        return ResponseEntity.ok().build();
+    }
+
+    @CacheEvict("region")
+    public ResponseEntity<?> deleteRegion(Long id) {
+
+        Optional<Region> optionalRegion = regionMapper.getRegionById(id);
+
+        if (optionalRegion.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+        regionMapper.delete(optionalRegion.get().getId());
 
         return ResponseEntity.ok().build();
     }

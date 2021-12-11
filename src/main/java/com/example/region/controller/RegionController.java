@@ -43,4 +43,9 @@ public class RegionController {
         return regionService.updateRegion(name, alias);
 
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteRegion(@PathVariable long id) {
+        return regionService.deleteRegion(id);
+    }
 }
