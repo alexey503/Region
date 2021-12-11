@@ -8,10 +8,8 @@ spring:
     initialization-mode: always
     continue-on-error: true
   jpa:
-    show-sql: false
+    show-sql: true
     database-platform: org.hibernate.dialect.PostgreSQL10Dialect
     generate-ddl: false
     hibernate:
       ddl-auto: update
-      #ddl-auto: update
-
