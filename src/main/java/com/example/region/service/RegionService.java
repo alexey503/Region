@@ -27,7 +27,6 @@ public class RegionService {
 
     }
 
-    @Cacheable(value = "region", key = "#alias")
     public ResponseEntity<Region> getRegionByAlias(String alias) {
 
         return regionMapper.getRegionByAlias(alias)
