@@ -12,4 +12,12 @@ public class Region {
         this.name = name;
         this.alias = alias;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Region region = (Region) o;
+        return name.equals(region.name) && alias.equals(region.alias);
+    }
 }
