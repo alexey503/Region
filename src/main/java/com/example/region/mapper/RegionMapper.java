@@ -11,6 +11,9 @@ import java.util.Optional;
 @Mapper
 public interface RegionMapper {
 
+    @Select("select count(*) from regions")
+    long getRegionsCount();
+
     @Insert("insert into regions(name, alias) values(#{name},#{alias})")
     void addRegion(Region region);
 
@@ -23,8 +26,8 @@ public interface RegionMapper {
     @Select("select * from regions where name like '%${searchString}%'")
     List<Region> regionSearch(String searchString);
 
-    @Select("update regions set name = #{alias} where id = #{id}")
-    void update(long id, String alias);
+    @Select("update regions set name = #{name} where id = #{id}")
+    void update(long id, String name);
 
     @Select("delete from regions where id = #{id}")
     void delete(long id);
