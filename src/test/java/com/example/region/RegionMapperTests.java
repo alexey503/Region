@@ -2,14 +2,14 @@ package com.example.region;
 
 import com.example.region.data.entity.Region;
 import com.example.region.mapper.RegionMapper;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 class RegionMapperTests {
@@ -51,7 +51,7 @@ class RegionMapperTests {
 
         regionMapper.update(oldRegion.getId(), testRegion.getName());
 
-        Region updatedRegion = regionMapper.getRegionById(oldRegion.getId()).get();
+        Region updatedRegion = regionMapper.getRegionById(oldRegion.getId()).orElseThrow();
 
         assertEquals(updatedRegion.getName(), testRegion.getName());
         Assertions.assertNotEquals(updatedRegion.getName(), oldRegion.getName());
